@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://lkrysvjem8ge"]
+
+[ext_resource type="PackedScene" uid="uid://d241mklpdhytw" path="res://objects/searsia_lucida_2k.gltf/searsia_lucida_2k.gltf" id="1_avsvi"]
+
+[node name="Tree" type="Node3D"]
+
+[node name="searsia_lucida_2k" parent="." instance=ExtResource("1_avsvi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.770426, 0, 1.27316)

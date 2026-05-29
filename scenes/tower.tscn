@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cipcvbinrwp5t"]
+
+[ext_resource type="PackedScene" uid="uid://dxtd6wewvjwfv" path="res://objects/scene.gltf" id="1_2x682"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2x682"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ay4al"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_2x682")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sketchfab_model/4c1dbb1eccc24110932205addd9c2b5c_fbx/RootNode/WatchTower/WatchTower_WatchTower_0" index="0"]
+transform = Transform3D(-4.69846, 0.17101, -2.22928e-08, 2.05376e-07, -7.47509e-09, -0.51, -1.7101, -0.469846, 9.7445e-16, 0, -4.23406, -6.89816e-07)
+mesh = SubResource("PlaneMesh_2x682")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/4c1dbb1eccc24110932205addd9c2b5c_fbx/RootNode/WatchTower/WatchTower_WatchTower_0/MeshInstance3D" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/4c1dbb1eccc24110932205addd9c2b5c_fbx/RootNode/WatchTower/WatchTower_WatchTower_0/MeshInstance3D/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_ay4al")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Sketchfab_model/4c1dbb1eccc24110932205addd9c2b5c_fbx/RootNode/WatchTower/WatchTower_WatchTower_0" index="1"]
+transform = Transform3D(-0.0881149, 0.00508722, 0.509894, 4.32923, -0.249948, 0.0103781, 2.5, 0.433013, 6.86786e-08, 3.46983, -0.16862, 3.92848)
+mesh = SubResource("PlaneMesh_2x682")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/4c1dbb1eccc24110932205addd9c2b5c_fbx/RootNode/WatchTower/WatchTower_WatchTower_0/MeshInstance3D2" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/4c1dbb1eccc24110932205addd9c2b5c_fbx/RootNode/WatchTower/WatchTower_WatchTower_0/MeshInstance3D2/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_ay4al")
+
+[node name="Door_WatchTower_0" parent="Sketchfab_model/4c1dbb1eccc24110932205addd9c2b5c_fbx/RootNode/WatchTower/Door" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0232823, 0, 0)

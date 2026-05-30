@@ -3,6 +3,7 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $Camera3D
 const SPEED = 7
 const JUMP_VELOCITY = 6
+@onready var bullet_scene = preload("res://scenes/bullet.tscn")
 
 var sensitivty=0.3
 var rotation_x=0
@@ -19,7 +20,10 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -41,3 +45,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation_x=clamp(rotation_x,-90,90)
 		rotation_degrees.y=rotation_y
 		camera.rotation_degrees.x=rotation_x
+
+func shoot():
+	var bullet= bullet_scene.instantiate()
+	bullet.global_transform = camera.global_transform
+	bullet.add_collision_exception_with(self)
+	get_tree().current_scene.add_child(bullet)
+	print("shot")

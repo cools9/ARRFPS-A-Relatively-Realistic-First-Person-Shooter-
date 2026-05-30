@@ -6,6 +6,8 @@
 radius = 0.004
 
 [sub_resource type="SphereMesh" id="SphereMesh_mkf8s"]
+radius = 0.05
+height = 0.1
 
 [node name="Bullet" type="RigidBody3D"]
 mass = 0.01

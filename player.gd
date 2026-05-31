@@ -35,7 +35,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(global_position.z)
+	#print(global_position.z)
 	if global_position.y < -100:
 		global_position=Vector3(330,144,329)
 	

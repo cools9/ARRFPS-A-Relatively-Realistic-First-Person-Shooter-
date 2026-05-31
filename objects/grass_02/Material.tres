@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bq3o64c4s4vvr"]
+
+[ext_resource type="Texture2D" uid="uid://drx2ijsva7m4j" path="res://objects/grass_02/textures/Material_baseColor.png" id="1_x684f"]
+[ext_resource type="Texture2D" uid="uid://b2a06une5p25m" path="res://objects/grass_02/textures/Material_metallicRoughness.png" id="2_4e706"]
+
+[resource]
+resource_name = "Material"
+transparency = 2
+alpha_scissor_threshold = 0.0607832
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_x684f")
+metallic_texture = ExtResource("2_4e706")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_4e706")
+roughness_texture_channel = 1

@@ -1,0 +1,59 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://daskix6beds6q"
+path="res://.godot/imported/scene.gltf-2b1e5d7aed1d3204cd3ca011c2bf63b5.scn"
+
+[deps]
+
+source_file="res://objects/grass_02/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-2b1e5d7aed1d3204cd3ca011c2bf63b5.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+_subresources={
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/path": "res://objects/grass_02/Material.tres"
+}
+},
+"meshes": {
+"Sketchfab_Scene_Object_0": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 60.0,
+"save_to_file/enabled": true,
+"save_to_file/path": "res://objects/grass_02/grass.res"
+}
+},
+"nodes": {
+"PATH:Sketchfab_model/Grass 02_obj_cleaner_materialmerger_gles/Object_2": {
+"mesh_instance/cast_shadow": 0
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

@@ -1,4 +1,5 @@
 extends CharacterBody3D
+@onready var raycast=$Camera3D/RayCast3D
 
 @onready var camera: Camera3D = $Camera3D
 @onready var bullet_scene = preload("res://scenes/bullet.tscn")
@@ -116,8 +117,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func shoot():
-	var bullet = bullet_scene.instantiate()
-	bullet.global_transform = camera.global_transform
-	bullet.add_collision_exception_with(self)
-	get_tree().current_scene.add_child(bullet)
-	print("shot")
+	if raycast.is_colliding():
+		var target = raycast.get_collider()
+		var hit_pos = raycast.get_collision_point()
+		var distance = raycast.global_position.distance_to(hit_pos)
+
+		print("Hit:", target.name)
+		print(distance)
+
+		if target.has_method("take_damage"):
+			target.take_damage(10)

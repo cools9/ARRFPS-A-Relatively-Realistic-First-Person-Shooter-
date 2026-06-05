@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx4fw2mt6ymd0"]
+[gd_scene load_steps=4 format=3 uid="uid://bx4fw2mt6ymd0"]
 
 [ext_resource type="Script" uid="uid://dl35tjw7fskw6" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://ds2om2rp5wy3i" path="res://objects/ak103/source/AK103/AK103.fbx" id="2_onrkg"]
-[ext_resource type="PackedScene" uid="uid://ccmy4u4u2vbkr" path="res://scenes/bullet.tscn" id="3_i3pqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -19,5 +18,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55517, 0)
 [node name="AK103" parent="Camera3D" instance=ExtResource("2_onrkg")]
 transform = Transform3D(0.0477341, 0, -0.99886, 0, 1, 0, 0.99886, 0, 0.0477341, 0.284691, -0.933754, 0)
 
-[node name="Bullet" parent="Camera3D" instance=ExtResource("3_i3pqv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.578556, -2.75855)
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -100)

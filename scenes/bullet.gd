@@ -1,6 +1,6 @@
 extends RigidBody3D
 
-@export var muzzle_speed := 200.0
+@export var muzzle_speed :=10
 
 # Air model
 @export var sea_level_density := 1.225
@@ -12,11 +12,13 @@ extends RigidBody3D
 # Spin (for Magnus effect realism)
 @export var spin_factor := 0.00002
 
-func _ready() -> void:
+func _ready():
+	print(global_position)
+	print(-transform.basis.z)
 	custom_integrator = true
 	can_sleep = false
-	linear_velocity = -transform.basis.z * muzzle_speed
-	gravity_scale = gravity_scale
+
+	linear_velocity = -global_transform.basis.z * muzzle_speed
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var v = state.linear_velocity - wind

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dse08r14n3pbb"]
+
+[ext_resource type="PackedScene" uid="uid://ds2om2rp5wy3i" path="res://objects/ak103/source/AK103/AK103.fbx" id="1_k2rxv"]
+
+[node name="AK103" instance=ExtResource("1_k2rxv")]

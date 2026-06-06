@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bito83evmrplg"]
+[gd_scene load_steps=2 format=3 uid="uid://dv6lcl1eobvxo"]
 
-[ext_resource type="Script" uid="uid://ivsrporgipyh" path="res://scenes/main_ui.gd" id="1_fnul3"]
+[sub_resource type="GDScript" id="GDScript_f863i"]
+script/source = "extends Control
+
+@onready var multiplay=$\"..\"
+
+
+func _on_client_pressed() -> void:
+	multiplay.start_client()
+
+
+func _on_server_pressed() -> void:
+	multiplay.start_server()
+"
 
 [node name="MainUi" type="Control"]
 layout_mode = 3
@@ -9,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fnul3")
+script = SubResource("GDScript_f863i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0

@@ -1,57 +1,50 @@
 extends CharacterBody3D
 @onready var raycast=$Camera3D/RayCast3D
-
 @onready var camera: Camera3D = $Camera3D
-#@onready var bullet_scene = preload("res://scenes/bullet.tscn")
+@onready var anim = $Camera3D/AK103/AnimationPlayer
+var grapple_target: Vector3
 var grappling=false
 const SPEED = 7.0
 const JUMP_VELOCITY = 6.0
-
 var sensitivity = 0.3
 var rotation_x = 0.0
 var rotation_y = 0.0
-
 # states
 var is_sliding = false
 var is_crouching = false
-
 var slide_timer = 0.0
 var slide_duration = 0.5
 var slide_speed_multiplier = 1.5
-
 # movement modifiers
 var crouch_speed_multiplier = 0.5
-
 # camera system
 var base_camera_y = 0.0
 var slide_camera_offset = -0.4
 var crouch_camera_offset = -0.2
 var current_camera_offset = 0.0
 
-func _enter_tree() -> void:
-	set_multiplayer_authority(name.to_int())
+var health=100
+var max_health = 100.0
+var max_stamina = 100.0
+var stamina=100
+var stamina_regen_timer=0.0
 
 func _ready() -> void:
-	if !is_multiplayer_authority():return
-	
 	camera.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	base_camera_y = camera.position.y
 	floor_max_angle = deg_to_rad(45)
 	floor_snap_length = 0.4
-	
-	print("my id: ", multiplayer.get_unique_id())
-	print("authority: ", get_multiplayer_authority())
-	print("is authority: ", is_multiplayer_authority())
-
 
 func _physics_process(delta: float) -> void:
-	if not multiplayer.has_multiplayer_peer(): return  # ADD THIS
-	if !is_multiplayer_authority():return
-	#print(global_position.z)
+	set_health()
+	stamina_regen_timer += delta
+	if stamina_regen_timer >= 2.0:
+		stamina_regen_timer = 0.0
+		stamina = min(stamina + 5, max_stamina)
 	if global_position.y < -100:
-		global_position=Vector3(330,144,329)
-	
+		global_position = Vector3(330, 144, 329)
+
 	# gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -59,9 +52,11 @@ func _physics_process(delta: float) -> void:
 	# jump
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+
+	# grapple start
 	if Input.is_action_just_pressed("grapple"):
 		grapple()
-		grappling=false
+
 	# shoot
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
@@ -69,8 +64,6 @@ func _physics_process(delta: float) -> void:
 	# crouch toggle
 	if Input.is_action_just_pressed("crouch") and is_on_floor():
 		is_crouching = !is_crouching
-
-		# cancel slide if crouching
 		if is_crouching:
 			is_sliding = false
 
@@ -91,62 +84,57 @@ func _physics_process(delta: float) -> void:
 
 	# speed logic
 	var speed = SPEED
-
 	if is_sliding:
 		speed *= slide_speed_multiplier
 	elif is_crouching:
 		speed *= crouch_speed_multiplier
+
 	if not grappling:
-		# movement
 		if direction:
 			velocity.x = direction.x * speed
 			velocity.z = direction.z * speed
+			stamina-=0.01
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	# camera logic
 	var target_offset := 0.0
-
 	if is_sliding:
 		target_offset = slide_camera_offset
 	elif is_crouching:
 		target_offset = crouch_camera_offset
-
 	current_camera_offset = lerp(current_camera_offset, target_offset, 10.0 * delta)
 	camera.position.y = base_camera_y + current_camera_offset
 
 	move_and_slide()
 
-
 func _unhandled_input(event: InputEvent) -> void:
-	if !is_multiplayer_authority(): return
 	if event is InputEventMouseMotion:
 		rotation_y -= event.relative.x * sensitivity
 		rotation_x -= event.relative.y * sensitivity
-
 		rotation_x = clamp(rotation_x, -90, 90)
-
 		rotation_degrees.y = rotation_y
 		camera.rotation_degrees.x = rotation_x
-		print("mouse moved: ", event.relative)
-
 
 func shoot():
 	if raycast.is_colliding():
 		var target = raycast.get_collider()
 		var hit_pos = raycast.get_collision_point()
 		var distance = raycast.global_position.distance_to(hit_pos)
-
 		print("Hit:", target.name)
+		anim.stop()
+		anim.play("recoil")
 		print(distance)
 
-
 func grapple():
-	if raycast.is_colliding():
-		grappling = true
-		var hit_pos = raycast.get_collision_point()
-		var direction = (hit_pos - global_position).normalized()
-		velocity=direction*5
-		if global_position.distance_to(hit_pos) < 2.0:
-			grappling = false
+	if stamina >=30:
+		if raycast.is_colliding():
+			grapple_target = raycast.get_collision_point()
+			var direction = (grapple_target - global_position).normalized()
+			velocity = direction * 30
+			stamina -= 30
+		
+func set_health():
+	$CanvasLayer/VBoxContainer/health.value=health
+	$CanvasLayer/VBoxContainer/stamina.value=stamina

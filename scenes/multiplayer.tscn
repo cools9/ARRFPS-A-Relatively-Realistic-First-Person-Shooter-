@@ -1,12 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://c62db7klinpb7"]
+[gd_scene load_steps=5 format=3 uid="uid://bduq2dklk05tv"]
 
-[ext_resource type="Script" uid="uid://di1m7tumo0yky" path="res://scenes/multiplayer.gd" id="1_b0l6s"]
-[ext_resource type="PackedScene" uid="uid://bito83evmrplg" path="res://scenes/main_ui.tscn" id="2_crvko"]
-[ext_resource type="Script" uid="uid://coqq0t6dpa5o8" path="res://scenes/high_level_player_spawner.gd" id="3_pjkx2"]
+[ext_resource type="PackedScene" uid="uid://dv6lcl1eobvxo" path="res://scenes/main_ui.tscn" id="2_crvko"]
 [ext_resource type="PackedScene" uid="uid://bx4fw2mt6ymd0" path="res://player.tscn" id="4_4vwpp"]
 
+[sub_resource type="GDScript" id="GDScript_crvko"]
+script/source = "extends Node3D
+
+var ip:=\"localhost\"
+var port := 65534
+var peer : ENetMultiplayerPeer
+
+func start_server():
+	peer = ENetMultiplayerPeer.new()
+	peer.create_server(port)
+	multiplayer.multiplayer_peer=peer
+	
+	
+func start_client():
+	peer = ENetMultiplayerPeer.new()
+	peer.create_client(ip,port)
+	multiplayer.multiplayer_peer=peer
+	$MainUi.hide()
+	
+func _ready() -> void:
+	if DisplayServer.get_name() == \"headless\":
+		start_server()
+		$MainUi.hide()
+"
+
+[sub_resource type="GDScript" id="GDScript_pjkx2"]
+script/source = "extends MultiplayerSpawner
+
+@export var network_player: PackedScene
+@export var terrain_scene: PackedScene
+
+func _ready() -> void:
+	multiplayer.peer_connected.connect(spawn_player)
+	
+func spawn_player(id:int) -> void:
+	if not multiplayer.is_server(): return
+	var player:Node=network_player.instantiate()
+	player.name=str(id)
+	
+	get_node(spawn_path).call_deferred(\"add_child\",player)
+	$\"../MainUi\".hide()
+"
+
 [node name="Multiplayer" type="Node3D"]
-script = ExtResource("1_b0l6s")
+script = SubResource("GDScript_crvko")
 
 [node name="MainUi" parent="." instance=ExtResource("2_crvko")]
 offset_left = 1840.0
@@ -18,5 +59,5 @@ offset_bottom = 535.0
 _spawnable_scenes = PackedStringArray("uid://bx4fw2mt6ymd0")
 spawn_path = NodePath("..")
 spawn_limit = 2
-script = ExtResource("3_pjkx2")
+script = SubResource("GDScript_pjkx2")
 network_player = ExtResource("4_4vwpp")

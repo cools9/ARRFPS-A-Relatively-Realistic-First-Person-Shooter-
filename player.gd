@@ -2,8 +2,8 @@ extends CharacterBody3D
 @onready var raycast=$Camera3D/RayCast3D
 
 @onready var camera: Camera3D = $Camera3D
-@onready var bullet_scene = preload("res://scenes/bullet.tscn")
-
+#@onready var bullet_scene = preload("res://scenes/bullet.tscn")
+var grappling=false
 const SPEED = 7.0
 const JUMP_VELOCITY = 6.0
 
@@ -28,14 +28,25 @@ var slide_camera_offset = -0.4
 var crouch_camera_offset = -0.2
 var current_camera_offset = 0.0
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int())
+
 func _ready() -> void:
+	if !is_multiplayer_authority():return
+	
+	camera.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	base_camera_y = camera.position.y
 	floor_max_angle = deg_to_rad(45)
 	floor_snap_length = 0.4
+	
+	print("my id: ", multiplayer.get_unique_id())
+	print("authority: ", get_multiplayer_authority())
+	print("is authority: ", is_multiplayer_authority())
 
 
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority():return
 	#print(global_position.z)
 	if global_position.y < -100:
 		global_position=Vector3(330,144,329)
@@ -47,7 +58,9 @@ func _physics_process(delta: float) -> void:
 	# jump
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	if Input.is_action_just_pressed("grapple"):
+		grapple()
+		grappling=false
 	# shoot
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
@@ -82,14 +95,14 @@ func _physics_process(delta: float) -> void:
 		speed *= slide_speed_multiplier
 	elif is_crouching:
 		speed *= crouch_speed_multiplier
-
-	# movement
-	if direction:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if not grappling:
+		# movement
+		if direction:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	# camera logic
 	var target_offset := 0.0
@@ -114,6 +127,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		rotation_degrees.y = rotation_y
 		camera.rotation_degrees.x = rotation_x
+		print("mouse moved: ", event.relative)
 
 
 func shoot():
@@ -125,5 +139,15 @@ func shoot():
 		print("Hit:", target.name)
 		print(distance)
 
-		if target.has_method("take_damage"):
-			target.take_damage(10)
+
+func grapple():
+	if raycast.is_colliding():
+		grappling = true
+		var target = raycast.get_collider()
+		var hit_pos = raycast.get_collision_point()
+		var distance = raycast.global_position.distance_to(hit_pos)
+
+		var direction = (hit_pos - global_position).normalized()
+		velocity=direction*5
+		if global_position.distance_to(hit_pos) < 2.0:
+			grappling = false

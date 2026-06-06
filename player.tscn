@@ -5,16 +5,6 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
-[sub_resource type="Animation" id="Animation_onrkg"]
-resource_name = "recoil"
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.0666667, 1, 0.659761, -0.544487, 0, 0.8, 1, 0.659761, -0.544487, 0.689946)
-
 [sub_resource type="Animation" id="Animation_i3pqv"]
 length = 0.001
 tracks/0/type = "position_3d"
@@ -24,6 +14,16 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0.659761, -0.544487, 0)
+
+[sub_resource type="Animation" id="Animation_onrkg"]
+resource_name = "recoil"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0666667, 1, 0.659761, -0.544487, 0, 0.8, 1, 0.659761, -0.544487, 0.689946)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hqtel"]
 _data = {

@@ -55,7 +55,7 @@ script = ExtResource("3_lquwl")
 mode = 0
 textures = [[ExtResource("5_7mycd")], [ExtResource("6_272bh")]]
 
-[sub_resource type="Resource" id="Resource_1u8w0"]
+[sub_resource type="Resource" id="Resource_d13ii"]
 script = ExtResource("13_ryguw")
 amount = 20000
 enabled = true
@@ -64,7 +64,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_0odxb"]
+[sub_resource type="Resource" id="Resource_1u8w0"]
 script = ExtResource("14_d13ii")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -75,7 +75,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_lswn8"]
+[sub_resource type="Resource" id="Resource_0odxb"]
 script = ExtResource("15_1u8w0")
 iterations = 3
 offset_step = 0.2
@@ -87,7 +87,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_a6jrf"]
+[sub_resource type="Resource" id="Resource_lswn8"]
 script = ExtResource("16_0odxb")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -103,16 +103,16 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_xuqvo"]
+[sub_resource type="Resource" id="Resource_a6jrf"]
 script = ExtResource("11_82xsv")
-stack = Array[ExtResource("12_getpj")]([SubResource("Resource_1u8w0"), SubResource("Resource_0odxb"), SubResource("Resource_lswn8"), SubResource("Resource_a6jrf")])
+stack = Array[ExtResource("12_getpj")]([SubResource("Resource_d13ii"), SubResource("Resource_1u8w0"), SubResource("Resource_0odxb"), SubResource("Resource_lswn8")])
 
 [sub_resource type="Resource" id="Resource_getpj"]
 script = ExtResource("19_xuqvo")
 radius = 456.679
 metadata/_custom_type_script = "uid://bnohy2u6oxt3w"
 
-[sub_resource type="Resource" id="Resource_qsp4k"]
+[sub_resource type="Resource" id="Resource_xuqvo"]
 script = ExtResource("13_ryguw")
 amount = 300
 enabled = true
@@ -121,7 +121,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_kq58d"]
+[sub_resource type="Resource" id="Resource_qsp4k"]
 script = ExtResource("14_d13ii")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -132,7 +132,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_seu75"]
+[sub_resource type="Resource" id="Resource_kq58d"]
 script = ExtResource("15_1u8w0")
 iterations = 3
 offset_step = 0.2
@@ -144,7 +144,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_htxhm"]
+[sub_resource type="Resource" id="Resource_seu75"]
 script = ExtResource("16_0odxb")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -160,9 +160,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_4k2k6"]
+[sub_resource type="Resource" id="Resource_htxhm"]
 script = ExtResource("11_82xsv")
-stack = Array[ExtResource("12_getpj")]([SubResource("Resource_qsp4k"), SubResource("Resource_kq58d"), SubResource("Resource_seu75"), SubResource("Resource_htxhm")])
+stack = Array[ExtResource("12_getpj")]([SubResource("Resource_xuqvo"), SubResource("Resource_qsp4k"), SubResource("Resource_kq58d"), SubResource("Resource_seu75")])
 
 [sub_resource type="Resource" id="Resource_jq2sk"]
 script = ExtResource("19_xuqvo")
@@ -313,7 +313,6 @@ material = SubResource("ShaderMaterial_yaehf")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xuqvo"]
 
 [node name="Main" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.2358, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -374,7 +373,7 @@ metadata/_editor_icon = ExtResource("9_1u8w0")
 [node name="pine_trees" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 408.535, 117.559, 508.943)
 script = ExtResource("10_cegan")
-modifier_stack = SubResource("Resource_xuqvo")
+modifier_stack = SubResource("Resource_a6jrf")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://662fk2fb0pps"
@@ -394,7 +393,7 @@ shape = SubResource("Resource_getpj")
 [node name="more_trees" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 342.291, 114.302, 185.105)
 script = ExtResource("10_cegan")
-modifier_stack = SubResource("Resource_4k2k6")
+modifier_stack = SubResource("Resource_htxhm")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://662fk2fb0pps"
@@ -431,3 +430,4 @@ use_collision = true
 size = Vector3(100, 100, 1)
 
 [node name="Multiplayer" parent="." instance=ExtResource("23_d13ii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 386.61, 119.648, 315.255)

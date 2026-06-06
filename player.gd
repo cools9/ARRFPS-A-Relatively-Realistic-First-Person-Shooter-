@@ -46,6 +46,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if not multiplayer.has_multiplayer_peer(): return  # ADD THIS
 	if !is_multiplayer_authority():return
 	#print(global_position.z)
 	if global_position.y < -100:
@@ -119,6 +120,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if !is_multiplayer_authority(): return
 	if event is InputEventMouseMotion:
 		rotation_y -= event.relative.x * sensitivity
 		rotation_x -= event.relative.y * sensitivity
@@ -143,10 +145,7 @@ func shoot():
 func grapple():
 	if raycast.is_colliding():
 		grappling = true
-		var target = raycast.get_collider()
 		var hit_pos = raycast.get_collision_point()
-		var distance = raycast.global_position.distance_to(hit_pos)
-
 		var direction = (hit_pos - global_position).normalized()
 		velocity=direction*5
 		if global_position.distance_to(hit_pos) < 2.0:

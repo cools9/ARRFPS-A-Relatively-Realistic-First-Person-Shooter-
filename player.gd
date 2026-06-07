@@ -25,8 +25,8 @@ var current_camera_offset = 0.0
 
 var health=100
 var max_health = 100.0
-var max_stamina = 100.0
-var stamina=100
+var max_stamina = 200
+var stamina=150
 var stamina_regen_timer=0.0
 
 func _ready() -> void:
@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	stamina_regen_timer += delta
 	if stamina_regen_timer >= 2.0:
 		stamina_regen_timer = 0.0
-		stamina = min(stamina + 5, max_stamina)
+		stamina = min(stamina + 10, max_stamina)
 	if global_position.y < -100:
 		global_position = Vector3(330, 144, 329)
 
@@ -126,6 +126,8 @@ func shoot():
 		anim.stop()
 		anim.play("recoil")
 		print(distance)
+		if target.name == "enemy":
+			$"../enemy".queue_free()
 
 func grapple():
 	if stamina >=30:

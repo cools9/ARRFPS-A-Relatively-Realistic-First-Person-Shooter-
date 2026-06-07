@@ -56,6 +56,9 @@ corner_radius_bottom_right = 20
 shadow_size = 10
 
 [node name="Player" type="CharacterBody3D"]
+wall_min_slide_angle = 1.4591
+floor_max_angle = 1.54636
+floor_snap_length = 0.19
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

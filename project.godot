@@ -24,6 +24,10 @@ shapes/stdout/print_fps=true
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/terrain_3d/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg")
 
+[global_group]
+
+enemies=""
+
 [input]
 
 ui_left={

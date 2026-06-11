@@ -19,10 +19,9 @@
 [ext_resource type="Script" uid="uid://defkc4yn6r0nu" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="15_1u8w0"]
 [ext_resource type="Script" uid="uid://3dvp8qr5o3ph" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="16_0odxb"]
 [ext_resource type="Script" uid="uid://bgwaf4gu10av5" path="res://addons/proton_scatter/src/scatter_item.gd" id="17_lswn8"]
-[ext_resource type="PackedScene" uid="uid://dxtd6wewvjwfv" path="res://objects/scene.gltf" id="17_yaehf"]
 [ext_resource type="Script" uid="uid://krsiv3mqxikr" path="res://addons/proton_scatter/src/scatter_shape.gd" id="18_a6jrf"]
-[ext_resource type="PackedScene" uid="uid://daskix6beds6q" path="res://objects/grass_02/scene.gltf" id="19_cegan"]
 [ext_resource type="Script" uid="uid://bnohy2u6oxt3w" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="19_xuqvo"]
+[ext_resource type="PackedScene" uid="uid://cipcvbinrwp5t" path="res://scenes/tower.tscn" id="22_ryguw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7mycd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -42,15 +41,47 @@ tonemap_mode = 2
 ssr_fade_in = 6264.73
 ssr_fade_out = 861.078
 ssr_depth_tolerance = 0.01
-ssao_radius = 4.2
-ssao_intensity = 5.39
-ssao_power = 1291.62
-ssao_detail = 1.45
+ssao_enabled = true
+ssao_radius = 16.0
+ssao_intensity = 4.74
+ssao_power = 7.13526
+ssao_detail = 5.0
+ssao_horizon = 0.79
+ssao_light_affect = 1.0
 ssao_ao_channel_affect = 1.0
 sdfgi_y_scale = 0
+glow_enabled = true
 glow_normalized = true
+glow_intensity = 0.0
+glow_strength = 0.38
+glow_bloom = 0.61
+glow_hdr_threshold = 1.42
+glow_hdr_scale = 2.51
+glow_map_strength = 1.0
+fog_light_energy = 0.43
+fog_sun_scatter = 0.73
+fog_density = 0.066
+fog_aerial_perspective = 0.101
+fog_height = 362.02
+fog_height_density = -1.1263
+volumetric_fog_density = 0.0147
+volumetric_fog_emission_energy = 5.05
+volumetric_fog_gi_inject = 0.0
+volumetric_fog_detail_spread = 0.574349
+volumetric_fog_ambient_inject = 0.71
+volumetric_fog_temporal_reprojection_amount = 0.845
 
-[sub_resource type="Resource" id="Resource_d13ii"]
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ryguw"]
+auto_exposure_enabled = true
+dof_blur_far_enabled = true
+dof_blur_far_distance = 152.29
+dof_blur_far_transition = 1058.39
+dof_blur_near_enabled = true
+dof_blur_near_distance = 0.55
+dof_blur_near_transition = 5072.86
+dof_blur_amount = 0.31
+
+[sub_resource type="Resource" id="Resource_ryguw"]
 script = ExtResource("13_ryguw")
 amount = 20000
 enabled = true
@@ -59,7 +90,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_1u8w0"]
+[sub_resource type="Resource" id="Resource_d13ii"]
 script = ExtResource("14_d13ii")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -70,7 +101,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_0odxb"]
+[sub_resource type="Resource" id="Resource_1u8w0"]
 script = ExtResource("15_1u8w0")
 iterations = 3
 offset_step = 0.2
@@ -82,7 +113,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_lswn8"]
+[sub_resource type="Resource" id="Resource_0odxb"]
 script = ExtResource("16_0odxb")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -98,16 +129,16 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_a6jrf"]
+[sub_resource type="Resource" id="Resource_lswn8"]
 script = ExtResource("11_82xsv")
-stack = Array[ExtResource("12_getpj")]([SubResource("Resource_d13ii"), SubResource("Resource_1u8w0"), SubResource("Resource_0odxb"), SubResource("Resource_lswn8")])
+stack = Array[ExtResource("12_getpj")]([SubResource("Resource_ryguw"), SubResource("Resource_d13ii"), SubResource("Resource_1u8w0"), SubResource("Resource_0odxb")])
 
 [sub_resource type="Resource" id="Resource_getpj"]
 script = ExtResource("19_xuqvo")
 radius = 456.679
 metadata/_custom_type_script = "uid://bnohy2u6oxt3w"
 
-[sub_resource type="Resource" id="Resource_xuqvo"]
+[sub_resource type="Resource" id="Resource_a6jrf"]
 script = ExtResource("13_ryguw")
 amount = 300
 enabled = true
@@ -116,7 +147,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_qsp4k"]
+[sub_resource type="Resource" id="Resource_xuqvo"]
 script = ExtResource("14_d13ii")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(20, 360, 20)
@@ -127,7 +158,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_kq58d"]
+[sub_resource type="Resource" id="Resource_qsp4k"]
 script = ExtResource("15_1u8w0")
 iterations = 3
 offset_step = 0.2
@@ -139,7 +170,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_seu75"]
+[sub_resource type="Resource" id="Resource_kq58d"]
 script = ExtResource("16_0odxb")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -155,9 +186,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_htxhm"]
+[sub_resource type="Resource" id="Resource_seu75"]
 script = ExtResource("11_82xsv")
-stack = Array[ExtResource("12_getpj")]([SubResource("Resource_xuqvo"), SubResource("Resource_qsp4k"), SubResource("Resource_kq58d"), SubResource("Resource_seu75")])
+stack = Array[ExtResource("12_getpj")]([SubResource("Resource_a6jrf"), SubResource("Resource_xuqvo"), SubResource("Resource_qsp4k"), SubResource("Resource_kq58d")])
 
 [sub_resource type="Resource" id="Resource_jq2sk"]
 script = ExtResource("19_xuqvo")
@@ -323,6 +354,7 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5vw27")
+camera_attributes = SubResource("CameraAttributesPractical_ryguw")
 
 [node name="Player" parent="." instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 342.3, 118.142, 347.468)
@@ -330,7 +362,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 342.3, 118.142, 347.468)
 [node name="pine_trees" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 408.535, 117.559, 508.943)
 script = ExtResource("10_cegan")
-modifier_stack = SubResource("Resource_a6jrf")
+modifier_stack = SubResource("Resource_lswn8")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://662fk2fb0pps"
@@ -350,7 +382,7 @@ shape = SubResource("Resource_getpj")
 [node name="more_trees" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 342.291, 114.302, 185.105)
 script = ExtResource("10_cegan")
-modifier_stack = SubResource("Resource_htxhm")
+modifier_stack = SubResource("Resource_seu75")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 metadata/_custom_type_script = "uid://662fk2fb0pps"
@@ -368,14 +400,8 @@ shape = SubResource("Resource_jq2sk")
 transform = Transform3D(1000, 0, 0, 0, 10, 0, 0, 0, 1000, 339.916, 107.603, 72.2389)
 mesh = SubResource("BoxMesh_yaehf")
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("17_yaehf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.103, 119.685, 212.398)
-
 [node name="enemy" parent="." instance=ExtResource("14_1u8w0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 352.415, 118.839, 376.928)
-
-[node name="Sketchfab_Scene2" parent="." instance=ExtResource("19_cegan")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 339.439, 113.639, 128.662)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 417.547, 152.556, 453.255)
@@ -430,3 +456,6 @@ metadata/_editor_icon = ExtResource("9_1u8w0")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_1u8w0")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("22_ryguw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.1, 119.68, 212)

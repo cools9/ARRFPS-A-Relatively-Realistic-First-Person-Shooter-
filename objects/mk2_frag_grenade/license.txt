@@ -1,0 +1,11 @@
+Model Information:
+* title:	MK2 frag grenade
+* source:	https://sketchfab.com/3d-models/mk2-frag-grenade-3d44335a9ffa4484862191f2d1aa9d1e
+* author:	Igrotok (https://sketchfab.com/Igrotok)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "MK2 frag grenade" (https://sketchfab.com/3d-models/mk2-frag-grenade-3d44335a9ffa4484862191f2d1aa9d1e) by Igrotok (https://sketchfab.com/Igrotok) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

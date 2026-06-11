@@ -1,10 +1,8 @@
-res://main.tscn
-res://addons/proton_scatter/demos/assets/materials/m_pine_leaves.tres
 res://player.tscn
+res://addons/proton_scatter/demos/assets/materials/m_pine_leaves.tres
+res://main.tscn
 res://scenes/tower.tscn
 res://addons/proton_scatter/demos/assets/pine_tree.tscn
 res://objects/ak_103.tscn
-res://player.gd
-res://enemy.gd
-res://world.gd
 res://scenes/enemy.tscn
+res://player.gd

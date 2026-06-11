@@ -5,6 +5,8 @@ extends CharacterBody3D
 @onready var raycast = $RayCast3D
 @onready var nav_agent = $NavigationAgent3D
 @onready var player = $"../Player"
+var hit_cooldown = 0.0
+var hit_cooldown_duration = 1.0
 
 func _physics_process(delta: float) -> void:
 	# global_position is the Godot 4 shorthand for global_transform.origin
@@ -24,8 +26,8 @@ func _physics_process(delta: float) -> void:
 	var direction = (player.global_position - global_position).normalized()
 	
 	# Catch up to the player if they get too far away
-	if distance > 100:
-		global_position = player.global_position
+	#if distance > 100:
+	#	global_position = player.global_position
 		
 	# --- ROTATION LOGIC ---
 	if player and distance > 0.1:
@@ -40,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		raycast.look_at(player.global_position, Vector3.UP)
 		
 		# --- RAYCAST COLLISION/DAMAGE ---
-		if raycast.is_colliding():
+		if raycast.is_colliding() and hit_cooldown <= 0.0:
 			var target = raycast.get_collider()
 			var hit_pos = raycast.get_collision_point()
 			var distancei = raycast.global_position.distance_to(hit_pos)
@@ -48,6 +50,7 @@ func _physics_process(delta: float) -> void:
 			print("Hit:", target.name)
 			if target.name == "Player":
 				player.health -= 10
+				hit_cooldown=hit_cooldown_duration
 			print(distancei)
 
 func update_target_location(target_location):

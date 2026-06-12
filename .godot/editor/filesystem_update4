@@ -6,3 +6,4 @@ res://addons/proton_scatter/demos/assets/pine_tree.tscn
 res://objects/ak_103.tscn
 res://scenes/enemy.tscn
 res://player.gd
+res://enemy.gd

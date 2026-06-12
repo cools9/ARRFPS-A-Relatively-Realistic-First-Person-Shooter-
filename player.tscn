@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bx4fw2mt6ymd0"]
+[gd_scene load_steps=14 format=3 uid="uid://bx4fw2mt6ymd0"]
 
 [ext_resource type="Script" uid="uid://dl35tjw7fskw6" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://ds2om2rp5wy3i" path="res://objects/ak103/source/AK103/AK103.fbx" id="2_onrkg"]
@@ -32,6 +32,15 @@ _data = {
 &"RESET": SubResource("Animation_i3pqv"),
 &"recoil": SubResource("Animation_onrkg")
 }
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3pqv"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
+radius = 0.1
+height = 0.2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_onrkg"]
 
@@ -78,6 +87,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_hqtel")
 }
 speed_scale = 0.9
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Camera3D/AK103"]
+transform = Transform3D(-2.08652e-09, -0.0477341, 0.99886, 1, -4.37114e-08, 0, 4.36616e-08, 0.99886, 0.0477341, -1.62796, 0.881852, 0.582716)
+emitting = false
+amount = 4
+one_shot = true
+visibility_aabb = AABB(-0.099995, -8.30875, -0.0999847, 1.42688, 8.40855, 6.11996)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_i3pqv")
+draw_pass_1 = SubResource("CapsuleMesh_i3pqv")
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -100)

@@ -71,16 +71,6 @@ volumetric_fog_detail_spread = 0.574349
 volumetric_fog_ambient_inject = 0.71
 volumetric_fog_temporal_reprojection_amount = 0.845
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ryguw"]
-auto_exposure_enabled = true
-dof_blur_far_enabled = true
-dof_blur_far_distance = 152.29
-dof_blur_far_transition = 1058.39
-dof_blur_near_enabled = true
-dof_blur_near_distance = 0.55
-dof_blur_near_transition = 5072.86
-dof_blur_amount = 0.31
-
 [sub_resource type="Resource" id="Resource_ryguw"]
 script = ExtResource("13_ryguw")
 amount = 20000
@@ -336,6 +326,9 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 [sub_resource type="BoxMesh" id="BoxMesh_yaehf"]
 material = SubResource("ShaderMaterial_yaehf")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ryguw"]
+size = Vector3(1000, 1, 1000)
+
 [sub_resource type="Resource" id="Resource_5vw27"]
 script = ExtResource("3_lquwl")
 mode = 0
@@ -354,7 +347,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_5vw27")
-camera_attributes = SubResource("CameraAttributesPractical_ryguw")
 
 [node name="Player" parent="." instance=ExtResource("3_h2yge")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 342.3, 118.142, 347.468)
@@ -396,9 +388,14 @@ transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 10.6998,
 script = ExtResource("18_a6jrf")
 shape = SubResource("Resource_jq2sk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1000, 0, 0, 0, 10, 0, 0, 0, 1000, 339.916, 107.603, 72.2389)
 mesh = SubResource("BoxMesh_yaehf")
+
+[node name="Area3D" type="Area3D" parent="water"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="water/Area3D"]
+shape = SubResource("BoxShape3D_ryguw")
 
 [node name="enemy" parent="." instance=ExtResource("14_1u8w0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 352.415, 118.839, 376.928)
@@ -459,3 +456,5 @@ navigation_mesh = SubResource("NavigationMesh_1u8w0")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("22_ryguw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 198.1, 119.68, 212)
+
+[connection signal="area_entered" from="water/Area3D" to="Player" method="_on_area_3d_area_entered"]

@@ -136,6 +136,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func shoot():
 	if raycast.is_colliding():
+		$Camera3D/AK103/GPUParticles3D.restart()
+		$Camera3D/AK103/GPUParticles3D.emitting=true
 		var target = raycast.get_collider()
 		var hit_pos = raycast.get_collision_point()
 		var distance = raycast.global_position.distance_to(hit_pos)
@@ -149,9 +151,9 @@ func shoot():
 		player.play()
 		player.finished.connect(player.queue_free)
 		cartridge_capacity-=1
+		
 		if cartridge_capacity<=0:
 			reload()
-			
 		print(distance)
 		if target.is_in_group("enemies"):
 			target.queue_free()
@@ -195,3 +197,8 @@ func reload():
 	cartridge_capacity = max_cartridge_capacity
 	
 	reloading = false
+
+
+func _on_area_3d_area_entered(area: Area3D) -> void:
+	if area.name == "water":
+		print("estan en water")

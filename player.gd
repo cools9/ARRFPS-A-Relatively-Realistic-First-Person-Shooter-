@@ -3,6 +3,14 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $Camera3D
 @onready var anim = $Camera3D/AK103/AnimationPlayer
 @onready var enemy_thingg= preload("res://scenes/enemy.tscn")
+@onready var gun_sounds = [
+	$"gun-shot",
+	$"gun-shot2",
+	$"gun-shot3",
+	$"gun-shot4"
+]
+@onready var underwater_filter = $CanvasLayer/ColorRect
+var sound_index := 0
 var grapple_target: Vector3
 var my_position:Vector3
 var grappling=false
@@ -42,12 +50,12 @@ func _ready() -> void:
 	camera.current = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	base_camera_y = camera.position.y
-	floor_max_angle = deg_to_rad(45)
-	floor_snap_length = 0.4
 	call_deferred("spawn_enemies")
 
 func _physics_process(delta: float) -> void:
-	$CanvasLayer/cartridge.text = str(cartridge_capacity) + "/30"
+	#var enemy_count = get_tree().get_nodes_in_group("enemies").size()
+	#print(enemy_count)
+	
 	set_coordinates()
 	health_check()
 	set_health()
@@ -140,23 +148,21 @@ func shoot():
 		$Camera3D/AK103/GPUParticles3D.emitting=true
 		var target = raycast.get_collider()
 		var hit_pos = raycast.get_collision_point()
-		var distance = raycast.global_position.distance_to(hit_pos)
 		if target==null:return
-		print("Hit:", target.name)
+		#print("Hit:", target.name)
 		anim.stop()
 		anim.play("recoil")
-		var player = AudioStreamPlayer3D.new()
-		add_child(player)
-		player.stream = preload("res://audio/AK-47 Single Shot Sound Effect - SoundEffectsArchive (192k).mp3")
-		player.play()
-		player.finished.connect(player.queue_free)
+		play_gun_sound()
 		cartridge_capacity-=1
-		
+		$CanvasLayer/cartridge.text = str(cartridge_capacity) + "/30"
 		if cartridge_capacity<=0:
 			reload()
-		print(distance)
-		if target.is_in_group("enemies"):
-			target.queue_free()
+		#print(distance)
+		if target and is_instance_valid(target) and target.is_in_group("enemies"):
+			await get_tree().create_timer(0.3).timeout
+			if is_instance_valid(target):
+				target.die()
+				print("killed")
 
 func grapple():
 	if stamina >=30:
@@ -182,7 +188,7 @@ func spawn_enemies():
 		var their_z = randi_range(50, 150) * (1 if randf() > 0.5 else -1)
 		var enemy = enemy_thingg.instantiate()
 		get_tree().current_scene.add_child(enemy)
-		enemy.global_position = Vector3(global_position.x + their_x, global_position.y + 500, global_position.z + their_z)
+		enemy.global_position = Vector3(global_position.x + their_x, global_position.y + 300, global_position.z + their_z)
 	
 
 func set_coordinates():
@@ -192,13 +198,25 @@ func reload():
 	if reloading:
 		return
 	reloading = true
-	anim.play("reload")
 	await get_tree().create_timer(1.0).timeout
 	cartridge_capacity = max_cartridge_capacity
 	
 	reloading = false
+	$CanvasLayer/cartridge.text = str(cartridge_capacity) + "/30"
 
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	if area.name == "water":
-		print("estan en water")
+
+
+func play_gun_sound():
+	gun_sounds[sound_index].play()
+	sound_index = (sound_index + 1) % gun_sounds.size()
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.name == "Player":
+		$CanvasLayer/ColorRect.visible= true
+		
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	if body.name=="Player":
+		$CanvasLayer/ColorRect.hide()
+		

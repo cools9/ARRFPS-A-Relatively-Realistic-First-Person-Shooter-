@@ -1,16 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://diiyrp4p4kn2o"]
+[gd_scene load_steps=11 format=3 uid="uid://diiyrp4p4kn2o"]
 
 [ext_resource type="Script" uid="uid://hrjmxps4b655" path="res://enemy.gd" id="1_md0e3"]
 [ext_resource type="PackedScene" uid="uid://ds2om2rp5wy3i" path="res://objects/ak103/source/AK103/AK103.fbx" id="2_4ra3w"]
+[ext_resource type="AudioStream" uid="uid://pca0q2tc85dj" path="res://audio/scream 1.mp3" id="3_c4w8v"]
+[ext_resource type="AudioStream" uid="uid://c521hy3px55oj" path="res://audio/scream 2.mp3" id="4_xwavj"]
+[ext_resource type="AudioStream" uid="uid://tr70hbhii83t" path="res://audio/scream 3.mp3" id="5_nenq2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md0e3"]
+albedo_color = Color(0.738011, 0.104074, 1.92523e-07, 1)
+metallic = 1.0
+metallic_specular = 1.0
+anisotropy_enabled = true
+subsurf_scatter_enabled = true
+backlight_enabled = true
+refraction_enabled = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_0odxb"]
+material = SubResource("StandardMaterial3D_md0e3")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xuqvo"]
 height = 5.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_md0e3"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_md0e3"]
+viewport_path = NodePath("SubViewport")
+
 [node name="enemy" type="CharacterBody3D" groups=["enemies"]]
+slide_on_ceiling = false
+wall_min_slide_angle = 0.411898
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_max_angle = 1.0472
+floor_snap_length = 1.0
 script = ExtResource("1_md0e3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -35,3 +57,38 @@ shape = SubResource("CapsuleShape3D_xuqvo")
 
 [node name="enemy2" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_md0e3")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(680, 128)
+
+[node name="Label" type="Label" parent="SubViewport"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -342.5
+offset_right = -129.5
+offset_bottom = 155.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "SUP"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.68491, 1.55046, 0)
+flip_h = true
+modulate = Color(0.907129, 0, 0.403064, 1)
+texture = SubResource("ViewportTexture_md0e3")
+
+[node name="scream 1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_c4w8v")
+max_distance = 4096.0
+
+[node name="Scream2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.069909, 0, 1.35413)
+stream = ExtResource("4_xwavj")
+max_distance = 3744.91
+
+[node name="Scream3" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.123547, 0, -0.0140662)
+stream = ExtResource("5_nenq2")
+max_distance = 4096.0

@@ -8,3 +8,4 @@ res://scenes/enemy.tscn
 res://enemy.gd
 res://player.gd
 res://water.gdshader
+res://datadir/data.hterrain

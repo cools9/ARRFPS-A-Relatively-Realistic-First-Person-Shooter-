@@ -5,7 +5,7 @@ res://addons/proton_scatter/demos/assets/materials/m_fence.tres::e893cd3cb517222
 res://addons/proton_scatter/demos/assets/materials/m_grass.tres::27773a009fab9c31cf7edd54ec901802::1780653964::res://.godot/exported/133200997/export-cd6e017c694f8c513fa4396c023fa854-m_grass.res
 res://addons/proton_scatter/demos/assets/materials/m_leaves.tres::cba9ca2ad83952fb2dea7abce6c2890b::1779958063::res://.godot/exported/133200997/export-5ff75dbbd03f7bec5f059881bed87f6d-m_leaves.res
 res://addons/proton_scatter/demos/assets/materials/m_mushroom.tres::17eb8b4dab2d6a80cf7c8be4c075e40d::1779958063::res://.godot/exported/133200997/export-1d3a728f1d8712d8aa5190098d013dbc-m_mushroom.res
-res://addons/proton_scatter/demos/assets/materials/m_pine_leaves.tres::a0a475e5edbd3ed20e274e16fb775aa4::1780754696::res://.godot/exported/133200997/export-b74413f5c9bf5e9aef416b79a4bf88e5-m_pine_leaves.res
+res://addons/proton_scatter/demos/assets/materials/m_pine_leaves.tres::a0a475e5edbd3ed20e274e16fb775aa4::1781331506::res://.godot/exported/133200997/export-b74413f5c9bf5e9aef416b79a4bf88e5-m_pine_leaves.res
 res://addons/proton_scatter/demos/assets/materials/m_rock.tres::e63d94037df4c27d2292f1ef27827835::1779958063::res://.godot/exported/133200997/export-a739ef0b0c8fc275b8b005eb4764114b-m_rock.res
 res://addons/proton_scatter/demos/assets/materials/m_trunk.tres::180322bc06c75692505dd2ba876b4a96::1779958063::res://.godot/exported/133200997/export-74bdd29a691bcca0864c6eaf42af6eae-m_trunk.res
 res://addons/proton_scatter/demos/assets/materials/m_water.tres::decdcac3fc6547419bea067c95971488::1779958063::res://.godot/exported/133200997/export-1283cd31718b89bc35881e3a099e429f-m_water.res
@@ -18,7 +18,7 @@ res://addons/proton_scatter/demos/assets/grass.tscn::3e6ec0c48fc4d351bd662cc9fdf
 res://addons/proton_scatter/demos/assets/grass_2.tscn::01cd77080d9eac6662a5751807af3727::1779958063::res://.godot/exported/133200997/export-efa2d0067b3b83347194711ea3fb1a51-grass_2.scn
 res://addons/proton_scatter/demos/assets/large_rock.tscn::a01e81788917eb7568e5dd6628000a4d::1779958063::res://.godot/exported/133200997/export-4b2c9ef051304714ec2e3ac3c5695e7e-large_rock.scn
 res://addons/proton_scatter/demos/assets/mushroom.tscn::fc9d5b4ca2cc8ce3b1e57ea732618536::1779958063::res://.godot/exported/133200997/export-d3e547f9e445861f5d70609f239e6489-mushroom.scn
-res://addons/proton_scatter/demos/assets/pine_tree.tscn::70e2731618e3d605fdafb96383b23dba::1780756041::res://.godot/exported/133200997/export-b443e9b12f0faf201b06b986113023fc-pine_tree.scn
+res://addons/proton_scatter/demos/assets/pine_tree.tscn::70e2731618e3d605fdafb96383b23dba::1781334457::res://.godot/exported/133200997/export-b443e9b12f0faf201b06b986113023fc-pine_tree.scn
 res://addons/proton_scatter/demos/assets/small_rock.tscn::d1d8fe62fe80cb86f149d4d45410ebc2::1779958063::res://.godot/exported/133200997/export-7572f3ab98bd7960a141cc5d89e34543-small_rock.scn
 res://addons/proton_scatter/demos/showcase.tscn::f69cd78ec302029e8e570a9d593f8cd6::1779958064::res://.godot/exported/133200997/export-81e30d704027b0e080050b2aec4e8222-showcase.scn
 res://addons/proton_scatter/icons/loading/m_loading.tres::b535a1f8ea72eac259e1381964418d68::1779958092::res://.godot/exported/133200997/export-b87370025e5d56557fe9cc2e99b5e06c-m_loading.res
@@ -54,7 +54,7 @@ res://addons/proton_scatter/src/stack/inspector_plugin/ui/presets/save_preset.ts
 res://addons/proton_scatter/src/stack/inspector_plugin/ui/stack_panel.tscn::0f2db3b263610049239998a14e324241::1779958094::res://.godot/exported/133200997/export-54c43a1586782ac89e94889738b9c874-stack_panel.scn
 res://addons/proton_scatter/tests/unit_testing.tscn::2cd0331b9bac70dbed8016b9d4a74252::1779958094::res://.godot/exported/133200997/export-5e1b92b6996acb36e4546f0d30197432-unit_testing.scn
 res://addons/terrain_3d/extras/particle_example/grass_material.tres::65a9a51082e2d0d69d4701b2311761c5::1779633941::res://.godot/exported/133200997/export-65abbcffd9efc11c96c703fdef6e8317-grass_material.res
-res://addons/terrain_3d/extras/particle_example/process_material.tres::fab93dd1fe1e464362b4d731687129b3::1779633941::res://.godot/exported/133200997/export-326442343ac2d4b361cf2b971cfb1d0f-process_material.res
+res://addons/terrain_3d/extras/particle_example/process_material.tres::fab93dd1fe1e464362b4d731687129b3::1780763407::res://.godot/exported/133200997/export-326442343ac2d4b361cf2b971cfb1d0f-process_material.res
 res://addons/terrain_3d/extras/particle_example/Terrain3DParticles.tscn::65b86070a65984969326a85123eeb2a0::1779633941::res://.godot/exported/133200997/export-560a94ec058cd5b2ac41012d7040356c-Terrain3DParticles.scn
 res://addons/terrain_3d/menu/bake_lod_dialog.tscn::69b241c0fd685f9a3b6852d50057daa0::1779633941::res://.godot/exported/133200997/export-392bc7429e87abdacc7b6690679ef7e6-bake_lod_dialog.scn
 res://addons/terrain_3d/menu/channel_packer.tscn::e31d468b235a34024c11c57048cd5c0e::1779633941::res://.godot/exported/133200997/export-b93903bdf402dd00292fb8fcc535178b-channel_packer.scn
@@ -113,9 +113,13 @@ res://demo/NavigationDemo.tscn::dc5d9873a2c50ccfd140c9fbf47391df::1779633942::re
 res://objects/grass_02/Material.tres::db84d39dd4b0071a868bde8252018a96::1780212147::res://.godot/exported/133200997/export-11162a771f092fa54a5c4d94ff0f1710-Material.res
 res://scenes/bullet.tscn::21da526f11f304bf2de4f77d85e819e8::1780656024::res://.godot/exported/133200997/export-6d8e6ff1e6f20a36e0402d27c623c86c-bullet.scn
 res://scenes/grass.tscn::84760c4231c0b79f4cbd0b96c402479a::1780214406::res://.godot/exported/133200997/export-be3b8d4ca72949d1cb70aa121409b318-grass.scn
-res://scenes/main_ui.tscn::c804951ecb2d154b6e9b92ccb48220af::1780756041::res://.godot/exported/133200997/export-bfc3b2752e7df62af6933f9c10b56de0-main_ui.scn
-res://scenes/multiplayer.tscn::9ec5a55182c37a2c6b20790b6519204a::1780756041::res://.godot/exported/133200997/export-336fd610a451664113c265253af88936-multiplayer.scn
-res://scenes/tower.tscn::e64435f91aefc10d2b39b619a1711b8a::1780756041::res://.godot/exported/133200997/export-4420e74ac523e75eab0f9807bba37a6f-tower.scn
+res://scenes/multiplayer.tscn::18fb116ca55208327b2ea44a068a7f07::1780759931::res://.godot/exported/133200997/export-336fd610a451664113c265253af88936-multiplayer.scn
+res://scenes/tower.tscn::00ebe7fe1269be7220173e2a2777e049::1781344900::res://.godot/exported/133200997/export-4420e74ac523e75eab0f9807bba37a6f-tower.scn
 res://scenes/tree.tscn::0e04b99fa5b3c6214e177a6c71e095de::1779963220::res://.godot/exported/133200997/export-a9120a52d578fc4f9832f17b0458a97d-tree.scn
-res://main.tscn::a53dbd43f3a10b7159b50baf10d512d2::1780756174::res://.godot/exported/133200997/export-3070c538c03ee49b7677ff960a3f5195-main.scn
-res://player.tscn::c8d98f2445a9417dc334c99969d42ff0::1780756041::res://.godot/exported/133200997/export-36a25e342948d0ceacc500772b5412b3-player.scn
+res://main.tscn::e3b6e737c5e0c55caf9ded1490c392e8::1781344900::res://.godot/exported/133200997/export-3070c538c03ee49b7677ff960a3f5195-main.scn
+res://player.tscn::9a69b43d78761aefb6a0d10774e8a321::1781344899::res://.godot/exported/133200997/export-36a25e342948d0ceacc500772b5412b3-player.scn
+res://images/Ground054_2K-PNG/Ground054_2K-PNG.tres::752a1d692ea4ff3e03c1796f8cdbf5c2::1781343422::res://.godot/exported/133200997/export-99e14625d0d353ec6b258c5bb6edbdaf-Ground054_2K-PNG.res
+res://images/Snow010A_2K-PNG/Snow010A_2K-PNG.tres::8df0eeb6fe778cfbaa55ef2815e90b41::1781342414::res://.godot/exported/133200997/export-45ae694a0213a5b48667732944583ef6-Snow010A_2K-PNG.res
+res://objects/ak_103.tscn::bc6cd7ed0b71f23bbce76fb1cdff9f88::1781344900::res://.godot/exported/133200997/export-0cb556291335ab91800b112e4c6d8b91-ak_103.scn
+res://scenes/enemy.tscn::2e34004aaa02a7ffd96b74f55c96b271::1781344900::res://.godot/exported/133200997/export-a930820ec0ab16db6719aff4daa500f9-enemy.scn
+res://scenes/grenade.tscn::e82d166932362d26fe27009d2a22c6c2::1781000982::res://.godot/exported/133200997/export-a9d6bc4e06dafa12172dae2ae6f6cedb-grenade.scn

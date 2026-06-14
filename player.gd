@@ -53,9 +53,8 @@ func _ready() -> void:
 	call_deferred("spawn_enemies")
 
 func _physics_process(delta: float) -> void:
-	#var enemy_count = get_tree().get_nodes_in_group("enemies").size()
-	#print(enemy_count)
-	
+	find_enemy()
+	enemy_counter()
 	set_coordinates()
 	health_check()
 	set_health()
@@ -84,7 +83,11 @@ func _physics_process(delta: float) -> void:
 		if !reloading:
 			shoot()
 			fire_timer=FIRE_RATE
-
+	
+	if Input.is_action_just_pressed("teleport"):
+		teleport_enemy()
+		
+	
 	# crouch toggle
 	if Input.is_action_just_pressed("crouch") and is_on_floor():
 		is_crouching = !is_crouching
@@ -181,6 +184,7 @@ func health_check():
 	if health <= 0:
 		global_position=my_position
 		health=max_health
+		get_tree().change_scene_to_file("res://scenes/youdied.tscn")
 		
 func spawn_enemies():
 	for i in 5:
@@ -220,3 +224,48 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	if body.name=="Player":
 		$CanvasLayer/ColorRect.hide()
 		
+func enemy_counter():
+	var enemy_count = get_tree().get_nodes_in_group("enemies").size()
+	$CanvasLayer/enemy_count.text="Enemies Left:\n"+str(enemy_count)
+	if enemy_count == 0:
+		$victory.visible = true
+		$victory/ColorRect.visible=true
+		$victory/ColorRect/Label.visible=true
+		$"victory/ColorRect/Dont Play Again".visible=true
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+func health_bar_shake():
+	var pos =$CanvasLayer/VBoxContainer.position
+	var tween = create_tween()
+	tween.tween_property($CanvasLayer/VBoxContainer, "position", pos + Vector2(10, 0), 0.05)
+	tween.tween_property($CanvasLayer/VBoxContainer, "position", pos - Vector2(10, 0), 0.05)
+	tween.tween_property($CanvasLayer/VBoxContainer, "position", pos, 0.05)
+	print("shakeee")
+
+
+func _on_dont_play_again_pressed() -> void:
+	queue_free()
+
+func find_enemy():
+	var closest_distance = INF
+
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		var distance = global_position.distance_to(enemy.global_position)
+
+		if distance < closest_distance:
+			closest_distance = distance
+
+	$CanvasLayer/Closest_enemy.text = "Closest Enemy: %.1f m" % closest_distance
+
+func teleport_enemy():
+	var closest_distance = INF
+	var closest_position= INF
+
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		var distance = global_position.distance_to(enemy.global_position)
+
+		if distance < closest_distance:
+			closest_distance = distance
+			closest_position = enemy.global_position
+
+	global_position=closest_position

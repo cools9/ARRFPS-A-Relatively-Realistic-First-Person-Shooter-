@@ -2,11 +2,12 @@ res://player.tscn
 res://addons/proton_scatter/demos/assets/materials/m_pine_leaves.tres
 res://main.tscn
 res://scenes/tower.tscn
-res://addons/proton_scatter/demos/assets/pine_tree.tscn
 res://objects/ak_103.tscn
 res://scenes/enemy.tscn
 res://enemy.gd
-res://player.gd
-res://water.gdshader
-res://datadir/data.hterrain
 res://datadir/height.res
+res://datadir/data.hterrain
+res://player.gd
+res://addons/zylann.hterrain/hterrain_data.gd
+res://scenes/youdied.tscn
+res://scenes/youdied.gd
